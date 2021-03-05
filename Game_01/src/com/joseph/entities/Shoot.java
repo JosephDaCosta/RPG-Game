@@ -11,12 +11,12 @@ public class Shoot extends Entity{
 	
 	public static int direction;
 	
-	private int dx;
-	private int dy;
+	private double dx;
+	private double dy;
 	private double spd = 4;
 	private int duration = 40, maxDuration = 0;
 	
-	public Shoot(int x, int y, int width, int height, BufferedImage sprite, int dx, int dy) {
+	public Shoot(int x, int y, int width, int height, BufferedImage sprite, double dx, double dy) {
 		super(x, y, width, height, sprite);
 		this.dx = dx;
 		this.dy = dy;

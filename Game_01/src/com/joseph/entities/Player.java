@@ -29,11 +29,12 @@ public class Player extends Entity{
 	public boolean isDamaged = false;
 	private int damagedFrames = 0;
 	
-	public boolean shoot = false; 
+	public boolean shoot = false, MouseShoot = false; 
 	
 	public boolean hasWeapon = false;
 	
 	public double life = 100, maxLife = 100;
+	public int mx, my;
 	
 	public Player(int x, int y, int width, int height, BufferedImage sprite) {
 		super(x, y, width, height, sprite);
@@ -136,9 +137,9 @@ public class Player extends Entity{
 			//Shoot
 			shoot = false;
 			if(hasWeapon) {				
-			shoot = false;
+			//shoot = false;
 			int dx = 0, dy = 0, px = 0, py = 0;
-			System.out.println("Shoots!");
+			//System.out.println("Shoots!");
 			if(dir == right_dir) {
 				dx = 1;
 				px = 5;
@@ -163,8 +164,36 @@ public class Player extends Entity{
 			
 			Shoot shoot = new Shoot(this.getX()+px, this.getY()+py, 2, 2, null, dx, dy);
 			Game.shoots.add(shoot);
-			
+			}
 		}
+		
+		if(MouseShoot) {
+			MouseShoot = false;
+			if(hasWeapon) {
+			int px = 0, py = 8;
+			double angle = 0;
+			//System.out.println("Shoots!");
+			//System.out.println(angle);
+			if(dir == right_dir) {
+				px = 5;
+				angle = Math.atan2(my - (this.getY()+py - Camera.y),mx - (this.getX()+px - Camera.x));
+			}else if(dir == left_dir) {
+				px = -4;
+				angle = Math.atan2(my - (this.getY()+py - Camera.y),mx - (this.getX()+px - Camera.x));
+			}else if(dir == up_dir) {
+				py = -6;
+				angle = Math.atan2(my - (this.getY()+py - Camera.y),mx - (this.getX()+px - Camera.x));
+			}else if(dir == down_dir) {
+				py = 8;
+				angle = Math.atan2(my - (this.getY()+py - Camera.y),mx - (this.getX()+px - Camera.x));
+			}
+			
+			double dx = Math.cos(angle);
+			double dy = Math.sin(angle);
+			
+			Shoot shoot = new Shoot(this.getX()+px, this.getY()+py, 2, 2, null, dx, dy);
+			Game.shoots.add(shoot);
+			}
 		}
 		/*
 		if(life <= 0) {
