@@ -170,7 +170,7 @@ public class Player extends Entity{
 		if(MouseShoot) {
 			MouseShoot = false;
 			if(hasWeapon) {
-			int px = 0, py = 8;
+			int px = 0, py = 0;
 			double angle = 0;
 			//System.out.println("Shoots!");
 			//System.out.println(angle);

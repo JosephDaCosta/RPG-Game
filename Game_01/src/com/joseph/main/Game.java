@@ -23,7 +23,6 @@ import com.joseph.entities.Player;
 import com.joseph.entities.Shoot;
 import com.joseph.graficos.Spritesheet;
 import com.joseph.graficos.UI;
-import com.joseph.world.Camera;
 import com.joseph.world.World;
 
 public class Game extends Canvas implements Runnable,KeyListener,MouseListener {
@@ -271,8 +270,8 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener {
 	@Override
 	public void mousePressed(MouseEvent e) {
 		player.MouseShoot = true;
-		player.mx = (e.getX() / 3) + Camera.x;
-		player.my = (e.getY() / 3) + Camera.y;
+		player.mx = (e.getX() / 3);
+		player.my = (e.getY() / 3);
 		//System.out.println(player.mx);
 		//System.out.println(player.my);
 	}
