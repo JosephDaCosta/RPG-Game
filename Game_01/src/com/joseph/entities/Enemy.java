@@ -23,6 +23,8 @@ public class Enemy extends Entity {
 	private BufferedImage[] leftEnemy;
 	private BufferedImage[] upEnemy;
 	private BufferedImage[] downEnemy;
+	
+	private int life = 20;
 
 	public Enemy(int x, int y, int width, int height, BufferedImage sprite) {
 		super(x, y, width, height, sprite);
@@ -86,6 +88,33 @@ public class Enemy extends Entity {
 			}else {
 				index = 0;
 			}
+			
+			collidingShoot();
+			if(life <= 0) {
+				destroyEnemy();
+				return;
+			}
+			
+	}
+	
+	public void destroyEnemy() {
+		Game.entities.remove(this);
+	}
+	
+	public void collidingShoot() {
+		for(int i = 0; i < Game.shoots.size(); i++) {
+			Entity e = Game.shoots.get(i);
+			if(e instanceof Shoot) {
+				if(Entity.isColliding(this, e)) {
+					life -= Game.rand.nextInt(5) + 5;
+					//life -= 20; //Privilégio de desenvolvedor
+					Game.shoots.remove(i);
+					//System.out.println("Colisão"); //Testando colisão das balas
+					System.out.println(life); //Testando o damage sofrido
+					return;
+				}
+			}
+		}
 	}
 	
 	public boolean isCollidingWithPlayer() {
