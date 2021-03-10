@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -53,6 +54,8 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener {
 	public static Random rand; 
 	
 	public UI ui;
+	
+	public static String gameState = "NORMAL";
 	
 	public Game() {
 		rand = new Random();
@@ -110,6 +113,7 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener {
 	}
 	
 	public void update() {
+		if(gameState == "NORMAL") {
 		for(int i = 0; i < entities.size(); i++) {
 			Entity e = entities.get(i);
 			e.update();
@@ -130,7 +134,9 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener {
 			//System.out.println(newWorld);
 			World.restartGame(newWorld);
 		}
-		
+		}else if(gameState == "GAME_OVER") {
+			//System.out.println("Game Over");	//Debugando o sistema de game over
+		}
 	}
 	
 	public void render() {
@@ -172,6 +178,19 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener {
 		g.setFont(new Font("Arial", Font.BOLD, 14));
 		g.setColor(Color.WHITE);
 		g.drawString("FPS: " + fps_show, WIDTH + 390, 20);
+		
+		if(gameState == "GAME_OVER") {
+			Graphics2D g2 = (Graphics2D) g;
+			g2.setColor(new Color(0,0,0,100));
+			g2.fillRect(0, 0, WIDTH*SCALE, HEIGHT*SCALE);
+			
+			g.setFont(new Font("arial", Font.BOLD, 35));
+			g.setColor(Color.white);
+			g.drawString("Game Over", 282, 230);
+			
+			g.setFont(new Font("arial", Font.BOLD, 20));
+			g.drawString("Pressione ENTER para reiniciar", 210, 470);
+		}
 		
 		bs.show();
 	}
