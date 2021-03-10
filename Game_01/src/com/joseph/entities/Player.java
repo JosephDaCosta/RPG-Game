@@ -195,20 +195,11 @@ public class Player extends Entity{
 			Game.shoots.add(shoot);
 			}
 		}
-		/*
 		if(life <= 0) {
-			//Game Over!
-			Game.entities = new ArrayList<Entity>();
-			Game.enemies = new ArrayList<Enemy>();
-			Game.spritesheet = new Spritesheet("/tilemap.png");
-			Game.spritesheet2 = new Spritesheet("/Overworld.png");
-			Game.spritesheet3 = new Spritesheet("/Items.png");
-			Game.player = new Player(0,0,16,16,Game.spritesheet.getSprite(408, 0, 16, 16));
-			Game.entities.add(Game.player);
-			Game.world = new World("/Map.png");
-			return;
+			/*
+			Game Over!
+			*/
 		}
-		*/
 		Camera.x = Camera.clamp(this.getX() - (Game.WIDTH / 2),0, World.WIDTH*16 - Game.WIDTH);
 		Camera.y = Camera.clamp(this.getY() - (Game.HEIGHT / 2),0, World.HEIGHT*16 - Game.HEIGHT);
 	}

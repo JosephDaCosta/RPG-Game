@@ -109,6 +109,7 @@ public class Enemy extends Entity {
 	}
 	
 	public void destroyEnemy() {
+		Game.enemies.remove(this);
 		Game.entities.remove(this);
 	}
 	

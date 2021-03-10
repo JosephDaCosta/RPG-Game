@@ -3,11 +3,16 @@ package com.joseph.world;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
-import com.joseph.entities.*;
-
+import com.joseph.entities.Enemy;
+import com.joseph.entities.Entity;
+import com.joseph.entities.LifePotion;
+import com.joseph.entities.Player;
+import com.joseph.entities.Weapon;
+import com.joseph.graficos.Spritesheet;
 import com.joseph.main.Game;
 
 public class World {
@@ -88,6 +93,18 @@ public class World {
 				(tiles[x2 + (y2 * World.WIDTH)] instanceof WallTile) ||
 				(tiles[x3 + (y3 * World.WIDTH)] instanceof WallTile) ||
 				(tiles[x4 + (y4 * World.WIDTH)] instanceof WallTile));
+	}
+	
+	public static void restartGame(String level) {
+		Game.entities = new ArrayList<Entity>();
+		Game.enemies = new ArrayList<Enemy>();
+		Game.spritesheet = new Spritesheet("/tilemap.png");
+		Game.spritesheet2 = new Spritesheet("/Overworld.png");
+		Game.spritesheet3 = new Spritesheet("/Items.png");
+		Game.player = new Player(0,0,16,16,Game.spritesheet.getSprite(408, 0, 16, 16));
+		Game.entities.add(Game.player);
+		Game.world = new World("/" + level);
+		return;
 	}
 	
 	public void render(Graphics g) {		
