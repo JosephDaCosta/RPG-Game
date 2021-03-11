@@ -72,7 +72,7 @@ public class Enemy extends Entity {
 				//Colliding with player.
 				//What we do?
 				if(Game.rand.nextInt(100) < 10) {
-				Game.player.life-=Game.rand.nextInt(3);
+				Game.player.life -= Game.rand.nextInt(3);
 				Game.player.isDamaged = true;
 				}	
 			}
@@ -166,7 +166,6 @@ public class Enemy extends Entity {
 		}else {
 			
 		}
-		
 	/*
 		//Show collision mask.
 		g.setColor(Color.blue);

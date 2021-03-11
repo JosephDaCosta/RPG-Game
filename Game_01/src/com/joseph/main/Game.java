@@ -36,7 +36,7 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener {
 	public static final int HEIGHT = 160;
 	private final int SCALE = 3;
 	private  static int fps_show = 0;
-	private int CUR_LEVEL = 1, MAX_LEVEL = 2;
+	private int CUR_LEVEL = 1, MAX_LEVEL = 3;
 	
 	private BufferedImage image;
 	
@@ -56,6 +56,9 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener {
 	public UI ui;
 	
 	public static String gameState = "NORMAL";
+	private boolean showGameOver = true;
+	private int framesGameOver = 0;
+	private boolean restartGame = false;
 	
 	public Game() {
 		rand = new Random();
@@ -114,6 +117,7 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener {
 	
 	public void update() {
 		if(gameState == "NORMAL") {
+		this.restartGame = false;
 		for(int i = 0; i < entities.size(); i++) {
 			Entity e = entities.get(i);
 			e.update();
@@ -136,6 +140,24 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener {
 		}
 		}else if(gameState == "GAME_OVER") {
 			//System.out.println("Game Over");	//Debugando o sistema de game over
+			this.framesGameOver ++;
+			if(this.framesGameOver == 30) {
+				this.framesGameOver = 0;
+				if(this.showGameOver)
+					this.showGameOver = false;
+					else
+						this.showGameOver = true;
+			}
+			
+			if(restartGame) {
+				this.restartGame = false;
+				gameState = "NORMAL";
+				CUR_LEVEL = 1;
+				String newWorld = "level_" + CUR_LEVEL + ".png";
+				//System.out.println(newWorld);
+				World.restartGame(newWorld);
+			}
+			
 		}
 	}
 	
@@ -186,10 +208,11 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener {
 			
 			g.setFont(new Font("arial", Font.BOLD, 35));
 			g.setColor(Color.white);
-			g.drawString("Game Over", 282, 230);
+			g.drawString("Game Over", (WIDTH*SCALE) / 2 - 93, 230);
 			
 			g.setFont(new Font("arial", Font.BOLD, 20));
-			g.drawString("Pressione ENTER para reiniciar", 210, 470);
+			if(this.showGameOver)
+				g.drawString("Pressione ENTER para reiniciar", (WIDTH*SCALE) / 2 - 145, 470);
 		}
 		
 		bs.show();
@@ -264,6 +287,10 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener {
 		
 		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
 			player.shoot = true;
+		}
+		
+		if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+			this.restartGame = true;
 		}
 		
 	}

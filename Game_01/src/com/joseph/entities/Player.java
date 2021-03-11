@@ -4,9 +4,7 @@ package com.joseph.entities;
 //import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
-import com.joseph.graficos.Spritesheet;
 import com.joseph.main.Game;
 import com.joseph.world.Camera;
 import com.joseph.world.World;
@@ -17,7 +15,7 @@ public class Player extends Entity{
 	public boolean cRight = false, cLeft = false, cUp = false, cDown = false;
 	public int right_dir = 0, left_dir = 1, up_dir = 2, down_dir = 3;
 	public int dir = right_dir;
-	public double speed = 1;
+	public double speed = 3;
 	
 	private int frames = 0, maxFrames = 6, index = 0, maxIndex = 3;
 	private boolean moved = false;
@@ -197,6 +195,7 @@ public class Player extends Entity{
 		}
 		if(life <= 0) {
 			//Game Over!
+			life = 0;
 			Game.gameState = "GAME_OVER";
 		}
 		Camera.x = Camera.clamp(this.getX() - (Game.WIDTH / 2),0, World.WIDTH*16 - Game.WIDTH);
@@ -259,9 +258,7 @@ public class Player extends Entity{
 				//g.drawImage(Game.spritesheet3.getSprite(10*48, 6*48, 48, 48),this.getX() + 8 - Camera.x, this.getY()-Camera.y, 16, 16, null );
 			}
 		}else {
-			//g.setColor(Color.red);
-			//g.setFont(new Font("arial", Font.BOLD,5));
-			//g.drawString(Game.player.isDamaged, this.getX(), this.getY());
+			
 		}
 		}
 	}
