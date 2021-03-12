@@ -97,6 +97,11 @@ public class Enemy extends Entity {
 				destroyEnemy();
 				return;
 			}
+			if(life < 0) {
+				life = 0;
+				destroyEnemy();
+				return;
+			}
 			
 			if(isDamaged) {
 				damagedFrames++;
