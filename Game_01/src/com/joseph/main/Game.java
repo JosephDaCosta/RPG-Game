@@ -313,7 +313,7 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener {
 		
 		if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 			gameState = "MENU";
-			menu.pause = true;
+			menu.pause = true;		
 		}
 		
 	}
