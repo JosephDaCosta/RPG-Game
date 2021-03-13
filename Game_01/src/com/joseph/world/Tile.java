@@ -8,7 +8,7 @@ import com.joseph.main.Game;
 public class Tile {
 
 	public static BufferedImage TILE_FLOOR = Game.spritesheet2.getSprite(0, 0, 16, 16);
-	public static BufferedImage TILE_WALL = Game.spritesheet2.getSprite(0, 256, 16, 16);
+	public static BufferedImage TILE_WALL = Game.spritesheet2.getSprite(2*16, 14*16, 16, 16);
 	public static BufferedImage TILE_WALL2 = Game.spritesheet2.getSprite(4*16, 5*16, 16, 16);
 	
 	private BufferedImage sprite;

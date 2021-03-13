@@ -79,7 +79,7 @@ public class Enemy extends Entity {
 			if(this.isCollidingWithPlayer() == true) {
 				move = false;
 			}
-			
+		
 			if(move) {
 			frames ++;
 			if(frames == maxFrames) {
