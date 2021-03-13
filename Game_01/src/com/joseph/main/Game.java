@@ -145,7 +145,7 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener {
 		}else if(gameState == "GAME_OVER") {
 			//System.out.println("Game Over");	//Debugando o sistema de game over
 			this.framesGameOver ++;
-			if(this.framesGameOver == 30) {
+			if(this.framesGameOver == 20) {
 				this.framesGameOver = 0;
 				if(this.showGameOver)
 					this.showGameOver = false;
@@ -219,7 +219,7 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener {
 			
 			g.setFont(new Font("arial", Font.BOLD, 20));
 			if(this.showGameOver)
-				g.drawString("Pressione ENTER para reiniciar", (WIDTH*SCALE) / 2 - 145, 470);
+				g.drawString("Press Enter", (WIDTH*SCALE) / 2 - 58, 270);
 		}else if(gameState == "MENU") {
 			menu.render(g);
 		}

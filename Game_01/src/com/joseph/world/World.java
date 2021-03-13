@@ -20,6 +20,7 @@ public class World {
 	public static Tile[] tiles; 
 	public static int WIDTH, HEIGHT;
 	public static final int TILE_SIZE = 16;
+	Tile tile = new Tile(0, 0, null);
 	
 	public World(String path) {
 		try {
@@ -77,6 +78,7 @@ public class World {
 	}
 	
 	public static boolean isFree(int xnext, int ynext) {
+		
 		int x1 = xnext / TILE_SIZE;
 		int y1 = ynext / TILE_SIZE;
 		

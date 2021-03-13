@@ -5,7 +5,9 @@ import java.awt.image.BufferedImage;
 
 import com.joseph.main.Game;
 import com.joseph.world.Camera;
+import com.joseph.world.World;
 //import com.joseph.world.Camera;
+
 
 public class Shoot extends Entity{
 	
@@ -30,6 +32,12 @@ public class Shoot extends Entity{
 			Game.shoots.remove(this);
 			return;
 		}
+		
+		if(World.isFree((int)x, (int)y) == false) {
+			Game.shoots.remove(this);
+			return;
+		}
+		
 	}
 
 	public void render(Graphics g) {
