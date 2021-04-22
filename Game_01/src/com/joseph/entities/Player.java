@@ -15,7 +15,7 @@ public class Player extends Entity{
 	public boolean cRight = false, cLeft = false, cUp = false, cDown = false;
 	public int right_dir = 0, left_dir = 1, up_dir = 2, down_dir = 3;
 	public int dir = right_dir;
-	public double speed = 1;
+	public double speed = 3;
 	
 	private int frames = 0, maxFrames = 6, index = 0, maxIndex = 3;
 	private boolean moved = false;

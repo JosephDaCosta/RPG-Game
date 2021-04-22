@@ -124,8 +124,8 @@ public class Enemy extends Entity {
 			if(e instanceof Shoot) {
 				if(Entity.isColliding(this, e)) {
 					isDamaged = true;
-					life -= Game.rand.nextInt(5) + 5;
-					//life -= 20; //Privilégio de desenvolvedor
+					//life -= Game.rand.nextInt(5) + 5;
+					life -= 20; //Privilégio de desenvolvedor
 					Game.shoots.remove(i);
 					//System.out.println("Colisão"); //Testando colisão das balas
 					System.out.println(life); //Testando o damage sofrido
@@ -153,7 +153,6 @@ public class Enemy extends Entity {
 				return true;
 			}
 		}
-		
 		return false;
 	}
 	
